@@ -1,0 +1,12 @@
+# Logs
+*.log
+rescue_progress.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build/out folders if any
+out/
+build/
+bin/

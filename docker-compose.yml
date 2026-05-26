@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  builder:
+    container_name: onlyoffice-linux-builder
+    image: onlyoffice-builder
+    privileged: true
+    environment:
+      - VPYTHON_BYPASS=manually managed
+      - DEPOT_TOOLS_UPDATE=0
+      - DEPOT_TOOLS_BOOTSTRAP_PYTHON3=0
+    volumes:
+      - .:/onlyoffice
+      - onlyoffice_depot_tools:/root/depot_tools
+    working_dir: /onlyoffice/build_tools/tools/linux
+    entrypoint: ["bash", "docker_entrypoint.sh"]
+    restart: "no"
+
+volumes:
+  onlyoffice_depot_tools:
+    name: onlyoffice_depot_tools
