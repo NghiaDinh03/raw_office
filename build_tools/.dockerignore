@@ -1,0 +1,5 @@
+out/
+develop/
+aqtinstall.log
+*.log
+tools/

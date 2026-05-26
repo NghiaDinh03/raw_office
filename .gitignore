@@ -1,12 +1,61 @@
-# Logs
+# Logs and temp files
 *.log
 rescue_progress.log
+*.tmp
+*.bak
+*.swp
+*~
 
-# OS files
+# OS and IDE files
 .DS_Store
 Thumbs.db
+.vs/
+.idea/
+*.suo
+*.user
+*.user.*
+*.mode1v3
+*.mode2v3
+*.perspectivev3
 
-# Build/out folders if any
+# Build and binary folders
 out/
 build/
 bin/
+obj/
+release/
+debug/
+Makefile
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.lib
+*.pdb
+*.app
+*.dmg
+*.zip
+*.tar.gz
+*.tgz
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Qt / Qmake files
+.qmake.stash
+Makefile.*
+object_script.*

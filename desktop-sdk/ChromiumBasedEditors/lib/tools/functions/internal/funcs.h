@@ -1,0 +1,72 @@
+/*
+ * Copyright (C) Ascensio System SIA, 2009-2026
+ *
+ * This program is a free software product. You can redistribute it and/or
+ * modify it under the terms of the GNU Affero General Public License (AGPL)
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
+ *
+ * This program is distributed WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
+ *
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
+ *
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
+ * Section 5 of the GNU AGPL version 3.
+ *
+ * No trademark rights are granted under this License.
+ *
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
+ *
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+#pragma once
+#include "./base.h"
+#include "../file_content_reader/main.cpp"
+#include "../file_opener/main.cpp"
+#include "../folder_content_reader/main.cpp"
+#include "../form_field_analyser/main.cpp"
+#include "../form_field_filler/main.cpp"
+#include "../generate_docx/main.cpp"
+#include "../generate_form/main.cpp"
+#include "../generate_pptx/main.cpp"
+#include "../recent_files_reader/main.cpp"
+
+struct TFuncInstance
+{
+	std::string name;
+	std::function<std::string(std::string, CAIToolsHelper*)> func;
+	TFuncInstance(const std::string& n, std::function<std::string(const std::string&, CAIToolsHelper*)> f)
+		: name(n), func(f) {}
+};
+
+class CFunctions
+{
+public:
+	std::map<std::string, TFuncInstance> m_funcs;
+	CFunctions()
+	{
+		m_funcs.insert(std::make_pair("file_content_reader", TFuncInstance(file_content_reader::description(), file_content_reader::main)));
+		m_funcs.insert(std::make_pair("file_opener", TFuncInstance(file_opener::description(), file_opener::main)));
+		m_funcs.insert(std::make_pair("folder_content_reader", TFuncInstance(folder_content_reader::description(), folder_content_reader::main)));
+		m_funcs.insert(std::make_pair("form_field_analyser", TFuncInstance(form_field_analyser::description(), form_field_analyser::main)));
+		m_funcs.insert(std::make_pair("form_field_filler", TFuncInstance(form_field_filler::description(), form_field_filler::main)));
+		m_funcs.insert(std::make_pair("generate_docx", TFuncInstance(generate_docx::description(), generate_docx::main)));
+		m_funcs.insert(std::make_pair("generate_form", TFuncInstance(generate_form::description(), generate_form::main)));
+		m_funcs.insert(std::make_pair("generate_pptx", TFuncInstance(generate_pptx::description(), generate_pptx::main)));
+		m_funcs.insert(std::make_pair("recent_files_reader", TFuncInstance(recent_files_reader::description(), recent_files_reader::main)));
+	}
+};
